@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Untuk si cantik anindya larasati</title>
+
+<!-- Google Fonts (Gen Z, modern, estetik) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ffdee9, #b5fffc);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+h1, h2, p {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+button {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Typing text */
+#typing {
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 120px;
+}
+
+/* Photo slideshow */
+.photo-box {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 : PASSWORD -->
+<div class="container active" id="page-password">
+  <h2>🔐 Masukkan Password</h2>
+  <input type="password" id="password" placeholder="Password dulu ya">
+  <button onclick="checkPassword()">Masuk</button>
+</div>
+
+<!-- PAGE 2 : WELCOME -->
+<div class="container" id="page-welcome">
+  <h1>Halo Cantikku 🤍</h1>
+  <p>Selamat datang di sesuatu yang aku buat khusus untuk kamu</p>
+  <button onclick="nextPage('page-message')">Lanjut</button>
+</div>
+
+<!-- PAGE 3 : MESSAGE -->
+<div class="container" id="page-message">
+  <h2>🤍</h2>
+  <p id="typing"></p>
+  <button id="nextAfterTyping" style="display:none" onclick="nextPage('page-photo')">
+    Lanjut
+  </button>
+</div>
+
+<!-- PAGE 4 : PHOTOS -->
+<div class="container" id="page-photo">
+  <h2>📸</h2>
+  <div class="photo-box">
+    <img id="slideshow" src="">
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://raw.githubusercontent.com/4868hm7srm-commits/laguu/refs/heads/main/musik.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const PASSWORD = "PASSWORD_KAMU"; // GANTI PASSWORD
+
+function checkPassword() {
+  const input = document.getElementById("password").value;
+  if (input === PASSWORD) {
+    document.getElementById("music").play();
+    nextPage('page-welcome');
+  } else {
+    alert("Password salah 😢");
+  }
+}
+
+function nextPage(id) {
+  document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  if (id === 'page-message') startTyping();
+  if (id === 'page-photo') startSlideshow();
+}
+
+/* Typing Effect */
+const message = "Halo sayangku anindya larasati, dek, ga kerasa ya waktu cepat banget berjalan udah 2026 aja, ingat kan tahun lalu kemarin kita ngerayain tahun 2025 bareng bareng? tahun ini juga (2026) kita juga ngerayain ini bareng bareng, banyak banget hal hal yang udah kita lewatin sama sama, kita udah bahagia bareng, seneng bareng, ketawa bareng, dan bahkan kita udah ngerasain sakit bareng bareng, untuk di 2026 ini denis berharap semoga kita masih bersama dan selalu bersama untuk tahun tahun yang akan datang nantinya, denis minta maaf karena sudah pernah sakitin hati kamu ya sayang, tapi denis gapernah sekalipun berniatan untuk nyakitin kamu sedikitpun 🤍, denis sayang banget sama kamu dek, dan denis juga cinta banget sama kamu, sayang dan cintanya denis ke kamu lebih dari apa yang kamu tau 🤍. Semoga kita selalu menyayangin dan mencintain di saat kita senang maupun bahagia ya sayang 🤍.
+
+Iloveyoumorethananything 🤍";
+let index = 0;
+
+function startTyping() {
+  const typingEl = document.getElementById("typing");
+  typingEl.innerHTML = "";
+  index = 0;
+  const interval = setInterval(() => {
+    typingEl.innerHTML += message[index] === "\n" ? "<br>" : message[index];
+    index++;
+    if (index >= message.length) {
+      clearInterval(interval);
+      document.getElementById("nextAfterTyping").style.display = "inline-block";
+    }
+  }, 50);
+}
+
+/* Slideshow */
+const photos = [
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto1.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto2.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto3.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto4.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto5.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto6.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto7.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto8.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto9.jpg",
+  "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto10.jpg"
+];
+
+let photoIndex = 0;
+
+function startSlideshow() {
+  const img = document.getElementById("slideshow");
+  img.src = photos[0];
+  setInterval(() => {
+    photoIndex = (photoIndex + 1) % photos.length;
+    img.src = photos[photoIndex];
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
