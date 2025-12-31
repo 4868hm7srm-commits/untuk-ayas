@@ -6,6 +6,7 @@
 
 <title>Untuk si cantik Anindya Larasati</title>
 
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -13,10 +14,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
 }
 
 body {
+  font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #ffdee9, #b5fffc);
   min-height: 100vh;
   display: flex;
@@ -34,7 +35,7 @@ body {
   display: none;
 }
 
-.active {
+.container.active {
   display: block;
 }
 
@@ -56,7 +57,7 @@ button {
   background: #ff4d6d;
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 12px 22px;
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
@@ -69,7 +70,7 @@ button:hover {
 #typing {
   font-size: 16px;
   line-height: 1.6;
-  min-height: 120px;
+  min-height: 130px;
 }
 
 .photo-box {
@@ -89,103 +90,97 @@ button:hover {
 
 <body>
 
-<!-- PASSWORD -->
+<!-- PAGE 1 : PASSWORD -->
 <div class="container active" id="page-password">
   <h2>🔐 Masukkan Password</h2>
   <input type="password" id="password" placeholder="Password dulu ya">
-  <button type="button" onclick="checkPassword()">Masuk</button>
+  <button onclick="checkPassword()">Masuk</button>
 </div>
 
-<!-- WELCOME -->
+<!-- PAGE 2 : WELCOME -->
 <div class="container" id="page-welcome">
   <h1>Halo Cantikku 🤍</h1>
-  <p>Selamat datang di sesuatu yang aku buat khusus untuk kamu</p>
-  <button type="button" onclick="nextPage('page-message')">Lanjut</button>
+  <p>Ini aku buat khusus untuk kamu, maaf ya kalau alay hehehe</p>
+  <button onclick="nextPage('page-message')">Lanjut</button>
 </div>
 
-<!-- MESSAGE -->
+<!-- PAGE 3 : MESSAGE -->
 <div class="container" id="page-message">
   <h2>🤍</h2>
   <p id="typing"></p>
-  <button id="nextAfterTyping" style="display:none" type="button"
-    onclick="nextPage('page-photo')">Lanjut</button>
+  <button id="nextAfterTyping" style="display:none" onclick="nextPage('page-photo')">
+    Lanjut
+  </button>
 </div>
 
-<!-- PHOTOS -->
+<!-- PAGE 4 : PHOTOS -->
 <div class="container" id="page-photo">
   <h2>📸</h2>
   <div class="photo-box">
-    <img id="slideshow">
+    <img id="slideshow" src="">
   </div>
 </div>
 
-<!-- MUSIC -->
-<audio id="music" loop>
-  <source src="https://raw.githubusercontent.com/4868hm7srm-commits/laguu/main/musik.mp3" type="audio/mpeg">
-</audio>
-
 <script>
+// PASSWORD
 const PASSWORD = "AyasCantik";
 
 function checkPassword() {
   const input = document.getElementById("password").value.trim();
+
   if (input === PASSWORD) {
-    nextPage('page-welcome');
-    setTimeout(() => {
-      document.getElementById("music").play().catch(()=>{});
-    }, 300);
+    nextPage("page-welcome");
   } else {
     alert("Password salah 😢");
   }
 }
 
 function nextPage(id) {
-  document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if (id === 'page-message') startTyping();
-  if (id === 'page-photo') startSlideshow();
+  document.querySelectorAll(".container").forEach(el => {
+    el.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  if (id === "page-message") startTyping();
+  if (id === "page-photo") startSlideshow();
 }
 
-/* MESSAGE (FIXED) */
+// TYPING EFFECT
 const message = `Halo sayangku Anindya Larasati 🤍
 
-Dek, nggak kerasa ya waktu cepat banget berjalan, udah 2026 aja.
-Ingat kan tahun lalu kita ngerayain 2025 bareng-bareng?
-Tahun ini (2026) kita juga masih bisa ngerayain bareng 🤍
+Ga kerasa ya waktu cepat banget berjalan.
+Kita sudah melewati banyak hal bersama,
+bahagia bareng, sedih bareng, dan kuat bareng.
 
-Banyak banget hal yang sudah kita lewatin sama-sama.
-Kita bahagia bareng, seneng bareng, ketawa bareng,
-bahkan pernah ngerasain sakit bareng-bareng.
+Di tahun 2026 ini,
+aku berharap kita masih bersama
+dan terus bersama di tahun-tahun berikutnya.
 
-Untuk tahun 2026 ini,
-Denis berharap semoga kita masih bersama
-dan selalu bersama di tahun-tahun selanjutnya 🤍
-
-Denis minta maaf kalau pernah nyakitin hati kamu ya sayang,
-tapi Denis nggak pernah sekalipun berniat nyakitin kamu 🤍
-
-Denis sayang banget sama kamu,
-dan cinta Denis ke kamu lebih dari apa yang kamu tahu 🤍
+Maaf ya kalau aku pernah nyakitin hati kamu.
+Percaya ya, aku sayang dan cinta banget sama kamu 🤍
 
 I love you more than anything 🤍`;
 
 let index = 0;
 
 function startTyping() {
-  const typingEl = document.getElementById("typing");
-  typingEl.innerHTML = "";
+  const el = document.getElementById("typing");
+  el.innerHTML = "";
   index = 0;
-  const interval = setInterval(() => {
-    typingEl.innerHTML += message[index] === "\n" ? "<br>" : message[index];
+
+  const typingInterval = setInterval(() => {
+    el.innerHTML += message[index] === "\n" ? "<br>" : message[index];
     index++;
+
     if (index >= message.length) {
-      clearInterval(interval);
+      clearInterval(typingInterval);
       document.getElementById("nextAfterTyping").style.display = "inline-block";
     }
-  }, 40);
+  }, 50);
 }
 
-/* SLIDESHOW */
+// SLIDESHOW
 const photos = [
   "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto1.jpg",
   "https://raw.githubusercontent.com/4868hm7srm-commits/foto/84bfcfcd8f2e5c3f936a3e9cdddf91f839ffd132/foto2.jpg",
@@ -204,6 +199,7 @@ let photoIndex = 0;
 function startSlideshow() {
   const img = document.getElementById("slideshow");
   img.src = photos[0];
+
   setInterval(() => {
     photoIndex = (photoIndex + 1) % photos.length;
     img.src = photos[photoIndex];
