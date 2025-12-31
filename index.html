@@ -129,15 +129,23 @@ button:hover {
 </audio>
 
 <script>
-const PASSWORD = "sayangaku";
+const PASSWORD = "AyasCantik";
 
 function checkPassword() {
   const input = document.getElementById("password").value.trim();
 
   if (input === PASSWORD) {
-    alert("Password benar ❤️");
-    document.getElementById("music").play();
+    // pindah halaman DULU
     nextPage('page-welcome');
+
+    // musik diputar SETELAH interaksi
+    setTimeout(() => {
+      const music = document.getElementById("music");
+      if (music) {
+        music.play().catch(() => {});
+      }
+    }, 500);
+
   } else {
     alert("Password salah 😢");
   }
@@ -200,5 +208,6 @@ function startSlideshow() {
 </body>
 
 </html>
+
 
 
