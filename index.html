@@ -129,13 +129,13 @@ button:hover {
 </audio>
 
 <script>
-const PASSWORD = "AyasCantik"; // GANTI PASSWORD
+const PASSWORD = "sayangaku";
 
 function checkPassword() {
-  const input = document.getElementById("password").value;
-  alert("Password yang diketik: " + input);
-  
+  const input = document.getElementById("password").value.trim();
+
   if (input === PASSWORD) {
+    alert("Password benar ❤️");
     document.getElementById("music").play();
     nextPage('page-welcome');
   } else {
@@ -200,4 +200,5 @@ function startSlideshow() {
 </body>
 
 </html>
+
 
