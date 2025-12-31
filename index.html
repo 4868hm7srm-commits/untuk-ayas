@@ -129,10 +129,12 @@ button:hover {
 </audio>
 
 <script>
-const PASSWORD = "020225"; // GANTI PASSWORD
+const PASSWORD = "AyasCantik"; // GANTI PASSWORD
 
 function checkPassword() {
   const input = document.getElementById("password").value;
+  alert("Password yang diketik: " + input);
+  
   if (input === PASSWORD) {
     document.getElementById("music").play();
     nextPage('page-welcome');
@@ -198,3 +200,4 @@ function startSlideshow() {
 </body>
 
 </html>
+
